@@ -10,7 +10,7 @@ export default function About() {
         I focus on building intelligent systems that solve real-world problems efficiently.
       </p>
 
-      <div className="bg-white/10 backdrop-blur-lg border border-white/10 p-6 rounded-2xl shadow-xl hover:shadow-cyan-500/20 hover:scale-105 transition duration-300">
+      <div className="mt-6 text-gray-400">
         <p>CGPA:</p>
         <p>Sem 1: 7.07</p>
         <p>Sem 2: 7.80</p>

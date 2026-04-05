@@ -18,7 +18,7 @@ export default function Hero() {
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ delay: 0.3 }}
-        className="bg-white/10 backdrop-blur-lg border border-white/10 p-6 rounded-2xl shadow-xl hover:shadow-cyan-500/20 hover:scale-105 transition duration-300"
+        className="mt-4 text-gray-400 text-lg"
       >
         Software Developer • Cybersecurity Enthusiast
       </motion.p>
