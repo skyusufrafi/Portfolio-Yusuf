@@ -5,6 +5,12 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: black;
+  background: #0B0F19;
   color: white;
+  scroll-behavior: smooth;
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }

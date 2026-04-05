@@ -9,7 +9,7 @@ export default function ParticlesBg() {
 
   return (
     <Particles
-      className="absolute -z-10"
+      className="bg-white/10 backdrop-blur-lg border border-white/10 p-6 rounded-2xl shadow-xl hover:shadow-cyan-500/20 hover:scale-105 transition duration-300"
       init={init}
       options={{
         particles: {
