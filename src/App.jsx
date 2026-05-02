@@ -10,18 +10,15 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="bg-[#0B0F19] text-white">
+    <div>
       <Navbar />
-
-      <div className="pt-20 px-6 md:px-20 space-y-32">
-        <Hero />
-        <About />
-        <Skills />
-        <Achievements />
-        <Projects />
-        <Contact />
-        <Footer />
-      </div>
+      <Hero />
+      <About />
+      <Skills />
+      <Achievements />
+      <Projects />
+      <Contact />
+      <Footer />
     </div>
   );
 }

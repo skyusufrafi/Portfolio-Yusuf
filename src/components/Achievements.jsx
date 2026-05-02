@@ -1,95 +1,88 @@
 import React from "react";
-import FadeIn from "./FadeIn";
+import { motion } from "framer-motion";
 
-export default function Achievements() {
+const hackathons = [
+  {
+    title: "Smart India Hackathon (SIH)",
+    achievement: "✅ Cleared Internal College SIH Round",
+    desc: "Participated in India’s largest national-level hackathon focused on solving real-world problem statements provided by industries and government organizations.",
+    points: [
+      "Worked on real-world problem-solving approach",
+      "Collaborated in a team under strict deadlines",
+      "Designed scalable and innovative technical solutions",
+      "Gained hands-on experience in ideation and rapid prototyping"
+    ],
+    skills: ["Problem Solving", "Teamwork", "Innovation", "Development"]
+  },
+
+  {
+    title: "Algorithm X – 32 Hour National Hackathon (AIKTC)",
+    achievement: "🏆 Selected in Top 60 Teams",
+    desc: "Participated in a 32-hour national-level hackathon organized by the Programmers Club, Department of Computer Engineering at AIKTC.",
+    points: [
+      "Built a complete working project under 32-hour pressure",
+      "Worked on real-time system development",
+      "Improved debugging and coding efficiency",
+      "Collaborated with team members for rapid execution"
+    ],
+    skills: ["Full Stack Development", "Time Management", "Debugging", "Collaboration"]
+  },
+
+  {
+    title: "TechSprint Hackathon (GDG on Campus – AIKTC)",
+    achievement: "🚀 Top 10 Finalist",
+    desc: "Participated in an online hackathon organized by Google Developer Groups on Campus, focusing on innovative and scalable tech solutions.",
+    points: [
+      "Developed innovative solutions using modern technologies",
+      "Learned industry-level problem-solving approaches",
+      "Enhanced knowledge of scalable application design",
+      "Worked in a competitive and collaborative environment"
+    ],
+    skills: ["Innovation", "System Design", "Development", "Problem Solving"]
+  }
+];
+
+function Hackathons() {
   return (
-    <section id="achievements" className="py-20">
+    <section id="hackathons" className="hackathon-section">
 
-      <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-cyan-400 to-purple-500 text-transparent bg-clip-text">
-        Hackathons & Achievements
-      </h2>
+      <h2 className="section-title">Hackathons & Achievements</h2>
 
-      <div className="space-y-10 max-w-4xl mx-auto">
+      <div className="hackathon-container">
+        {hackathons.map((hack, index) => (
+          <motion.div
+            key={index}
+            className="hackathon-card"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+          >
+            <h3>{hack.title}</h3>
 
-        {/* SMART INDIA HACKATHON */}
-        <FadeIn>
-          <div className="bg-white/10 backdrop-blur-lg border border-white/10 p-6 rounded-2xl shadow-xl hover:scale-105 transition">
-
-            <h3 className="text-2xl font-bold text-cyan-400">
-              Smart India Hackathon (SIH)
-            </h3>
-
-            <p className="text-gray-300 mt-3">
-              Participated in India’s largest national-level hackathon focused on solving real-world problem statements provided by industries and government organizations.
-            </p>
-
-            <ul className="mt-4 text-gray-400 space-y-2 text-sm">
-              <li>• Worked on real-world problem-solving approach</li>
-              <li>• Collaborated in a team environment under time constraints</li>
-              <li>• Developed scalable and innovative technical solutions</li>
-              <li>• Gained experience in rapid prototyping and ideation</li>
-            </ul>
-
-            <div className="mt-4 text-sm text-gray-500">
-              Skills: Problem Solving • Teamwork • Innovation • Development
+            <div className="achievement">
+              {hack.achievement}
             </div>
 
-          </div>
-        </FadeIn>
+            <p className="desc">{hack.desc}</p>
 
-        {/* ALGORITHM X */}
-        <FadeIn>
-          <div className="bg-white/10 backdrop-blur-lg border border-white/10 p-6 rounded-2xl shadow-xl hover:scale-105 transition">
-
-            <h3 className="text-2xl font-bold text-purple-400">
-              Algorithm X – 32 Hour National Hackathon (AIKTC)
-            </h3>
-
-            <p className="text-gray-300 mt-3">
-              Participated in a 32-hour national-level hackathon organized by the Programmers Club, Department of Computer Engineering at AIKTC.
-            </p>
-
-            <ul className="mt-4 text-gray-400 space-y-2 text-sm">
-              <li>• Built project under intense 32-hour time constraint</li>
-              <li>• Worked on real-time system development</li>
-              <li>• Improved coding efficiency and debugging skills</li>
-              <li>• Collaborated with team members for rapid execution</li>
+            <ul>
+              {hack.points.map((p, i) => (
+                <li key={i}>✔ {p}</li>
+              ))}
             </ul>
 
-            <div className="mt-4 text-sm text-gray-500">
-              Skills: Full Stack Development • Time Management • Debugging • Collaboration
+            <div className="skills">
+              {hack.skills.map((s, i) => (
+                <span key={i}>{s}</span>
+              ))}
             </div>
 
-          </div>
-        </FadeIn>
-
-        {/* TECHSPRINT */}
-        <FadeIn>
-          <div className="bg-white/10 backdrop-blur-lg border border-white/10 p-6 rounded-2xl shadow-xl hover:scale-105 transition">
-
-            <h3 className="text-2xl font-bold text-pink-400">
-              TechSprint Hackathon (GDG on Campus – AIKTC)
-            </h3>
-
-            <p className="text-gray-300 mt-3">
-              Participated in an online hackathon organized by Google Developers Group on Campus, focusing on innovative and scalable tech solutions.
-            </p>
-
-            <ul className="mt-4 text-gray-400 space-y-2 text-sm">
-              <li>• Developed innovative ideas using modern technologies</li>
-              <li>• Learned industry-level problem-solving approaches</li>
-              <li>• Enhanced knowledge of scalable application design</li>
-              <li>• Worked in a competitive and collaborative environment</li>
-            </ul>
-
-            <div className="mt-4 text-sm text-gray-500">
-              Skills: Innovation • System Design • Development • Problem Solving
-            </div>
-
-          </div>
-        </FadeIn>
-
+          </motion.div>
+        ))}
       </div>
+
     </section>
   );
 }
+
+export default Hackathons;

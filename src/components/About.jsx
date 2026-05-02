@@ -1,55 +1,76 @@
 import React from "react";
-import FadeIn from "./FadeIn";
+import { motion } from "framer-motion";
 
-export default function About() {
+function About() {
   return (
-    <FadeIn>
-      <section id="about" className="py-20">
+    <section id="about" className="about-section">
 
-        <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-cyan-400 to-purple-500 text-transparent bg-clip-text">
-          About Me
-        </h2>
+      <motion.div
+        className="about-container"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
 
-        <p className="text-gray-300 max-w-3xl leading-relaxed">
-          I am <span className="text-white font-semibold">Shaikh Mohammed Yusuf Mohd Rafi</span>, 
-          a passionate Software Developer and aspiring Cybersecurity expert currently pursuing 
-          <span className="text-white"> Computer Engineering at AIKTC</span>.
-          I am deeply interested in building secure, scalable, and intelligent systems that solve real-world problems.
+        {/* TITLE */}
+        <h2 className="about-title">About Me</h2>
+
+        {/* INTRO */}
+        <p className="about-text">
+          I am <span>Shaikh Mohammed Yusuf Mohd Rafi</span>, a passionate 
+          Software Developer and aspiring Cybersecurity expert currently 
+          pursuing Computer Engineering at AIKTC. I am deeply interested 
+          in building secure, scalable, and intelligent systems that solve 
+          real-world problems.
         </p>
 
-        <p className="text-gray-400 mt-4 max-w-3xl">
-          I actively participate in hackathons, develop innovative projects, and continuously enhance my technical skills 
-          in full-stack development and security domains.
+        <p className="about-text">
+          I actively participate in hackathons, develop innovative projects, 
+          and continuously enhance my technical skills in full-stack development 
+          and security domains.
         </p>
 
         {/* EDUCATION */}
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold text-cyan-400">Education</h3>
-          <p className="text-gray-300 mt-2">
-            B.E. Computer Engineering <br />
+        <div className="about-block">
+          <h3 className="about-subtitle">Education</h3>
+          <p>
+            <strong>B.E. Computer Engineering</strong><br />
             Anjuman-I-Islam’s Kalsekar Technical Campus (AIKTC)
           </p>
         </div>
 
         {/* CGPA */}
-        <div className="mt-6">
-          <h3 className="text-xl font-semibold text-purple-400">Academic Performance</h3>
-          <ul className="text-gray-300 mt-2 space-y-1">
-            <li>Sem 1: 7.07</li>
-            <li>Sem 2: 7.80</li>
-            <li>Sem 3: 9.41</li>
-          </ul>
+        <div className="about-block">
+          <h3 className="about-subtitle">Academic Performance</h3>
+
+          <div className="cgpa-grid">
+            <div className="cgpa-card">
+              <span>Semester 1</span>
+              <h4>7.07</h4>
+            </div>
+
+            <div className="cgpa-card">
+              <span>Semester 2</span>
+              <h4>7.80</h4>
+            </div>
+
+            <div className="cgpa-card highlight">
+              <span>Semester 3</span>
+              <h4>9.41</h4>
+            </div>
+          </div>
         </div>
 
-        {/* PERSONAL DETAILS */}
-        <div className="mt-6">
-          <h3 className="text-xl font-semibold text-pink-400">Personal Details</h3>
-          <p className="text-gray-300 mt-2">
-            Date of Birth: 24 April 2006
-          </p>
+        {/* PERSONAL */}
+        <div className="about-block">
+          <h3 className="about-subtitle">Personal Details</h3>
+          <p>Date of Birth: <strong>24 April 2006</strong></p>
         </div>
 
-      </section>
-    </FadeIn>
+      </motion.div>
+
+    </section>
   );
 }
+
+export default About;
