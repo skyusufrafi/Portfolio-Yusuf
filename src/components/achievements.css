@@ -1,0 +1,131 @@
+/* BACKGROUND */
+.hackathons-section {
+  padding: 100px 10%;
+  background: radial-gradient(circle at top, #0a0f1c, #050814);
+  color: white;
+  perspective: 1000px;
+}
+
+/* TITLE */
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 60px;
+  background: linear-gradient(90deg, #00c8ff, #00ffcc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* GRID */
+.hackathon-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* CARD */
+.hackathon-card {
+  position: relative;
+  padding: 25px;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(0, 200, 255, 0.2);
+
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+/* GLOW BORDER */
+.hackathon-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(45deg, #00c8ff, #00ffcc, #8a2be2);
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* HOVER */
+.hackathon-card:hover {
+  box-shadow: 0 0 30px rgba(0, 200, 255, 0.4);
+}
+
+/* TITLE */
+.hackathon-card h3 {
+  color: #00c8ff;
+  margin-bottom: 10px;
+}
+
+/* ACHIEVEMENT */
+.achievement {
+  color: #00ff88;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* DESC */
+.desc {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+/* LIST */
+ul {
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+
+ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* SKILLS */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+
+  background: rgba(0, 200, 255, 0.1);
+  border: 1px solid rgba(0, 200, 255, 0.3);
+
+  color: #00c8ff;
+
+  transition: 0.3s;
+}
+
+.skill-badge:hover {
+  background: linear-gradient(45deg, #00c8ff, #00ffcc);
+  color: black;
+  transform: scale(1.1);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hackathons-section {
+    padding: 60px 5%;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .hackathon-card {
+    padding: 20px;
+  }
+}
