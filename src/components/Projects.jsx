@@ -31,7 +31,7 @@ const projects = [
       "Real-time order tracking system",
       "Inventory management system",
       "Waste analytics dashboard",
-      "Smart resource allocation",
+      "Smart Preordering system",
       "Sustainable food distribution",
       "User-friendly ordering interface",
       "Data-driven decision making"
@@ -75,7 +75,7 @@ const projects = [
       "Scalable backend architecture",
       "User-friendly interface"
     ],
-    tech: ["React", "Node.js", "MongoDB"],
+    tech: ["HTML/CSS", "Python", "Google Sheets"],
     github: "https://github.com/skyusufrafi/UnityLink",
     live: "https://unitylink-peach.vercel.app/"
   },
@@ -94,7 +94,7 @@ const projects = [
       "Scalable full-stack architecture",
       "Data-driven decision making"
     ],
-    tech: ["React", "Node.js", "MongoDB", "AI/ML", "APIs"],
+    tech: ["HTML/CSS", "Python", "Google Sheets"],
     github: "https://github.com/skyusufrafi/SkillSync-AI",
     live: "https://skillsync-ai-fzhu.onrender.com/"
   }
