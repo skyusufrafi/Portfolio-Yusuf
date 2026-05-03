@@ -37,6 +37,41 @@ section {
   margin-top: 20px;
 }
 
+.hero {
+  text-align: center;
+  padding: 140px 20px 80px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+
+  background: linear-gradient(90deg,#00c8ff,#00ffcc,#8a2be2);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero-desc {
+  max-width: 600px;
+  margin: 20px auto;
+  color: #94a3b8;
+}
+
+/* BUTTONS */
+.btn-primary {
+  background: linear-gradient(90deg,#00c8ff,#00ffcc);
+  padding: 12px 22px;
+  border-radius: 12px;
+  color: black;
+  margin-right: 10px;
+}
+
+.btn-secondary {
+  border: 1px solid #00c8ff;
+  padding: 12px 22px;
+  border-radius: 12px;
+}
+
 .btn-primary {
   background: #3b82f6;
   padding: 10px 20px;
@@ -47,6 +82,28 @@ section {
 .btn-secondary {
   border: 1px solid #3b82f6;
   padding: 10px 20px;
+  border-radius: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #020617, #000);
+  color: white;
+  scroll-behavior: smooth;
+}
+
+/* SECTION SPACING */
+section {
+  padding: 100px 10%;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#00c8ff,#00ffcc);
   border-radius: 10px;
 }
 
@@ -247,99 +304,92 @@ section {
   }
 }
 
+/* GLOBAL BACKGROUND */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  overflow-x: hidden;
 
-/* CONTACT SECTION */
-.contact {
-  text-align: center;
-  padding: 120px 20px;
+  background: radial-gradient(circle at 20% 20%, #0f172a, #020617 60%),
+              radial-gradient(circle at 80% 0%, rgba(0,200,255,0.15), transparent),
+              radial-gradient(circle at 0% 100%, rgba(168,85,247,0.15), transparent);
 }
 
-.contact-title {
-  font-size: 2.5rem;
+/* SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-glow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* GLOW BLOBS */
+.glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+}
+
+/* COLORS */
+.g1 {
+  background: #00c8ff;
+  top: 10%;
+  left: 10%;
+}
+
+.g2 {
+  background: #a855f7;
+  top: 50%;
+  right: 10%;
+}
+
+.g3 {
+  background: #00ffcc;
+  bottom: 10%;
+  left: 40%;
+}
+
+/* UNIVERSAL CARD STYLE */
+.glass-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: 0.3s;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(0,200,255,0.3);
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(0,200,255,0.2), transparent);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 60px;
+
   background: linear-gradient(90deg,#22d3ee,#3b82f6,#a855f7);
   -webkit-background-clip: text;
   color: transparent;
-}
-
-.contact-subtitle {
-  color: #94a3b8;
-  margin-bottom: 25px;
-}
-
-/* BUTTONS */
-.contact-btn {
-  display: block;
-  margin: 10px auto;
-  padding: 12px 20px;
-  border-radius: 12px;
-  width: fit-content;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.email {
-  background: rgba(255,255,255,0.1);
-}
-
-.whatsapp {
-  background: #22c55e;
-  color: white;
-}
-
-.contact-btn:hover {
-  transform: scale(1.05);
-}
-
-/* SOCIAL ICONS */
-.social-icons {
-  margin-top: 20px;
-}
-
-.social-icons a {
-  margin: 0 10px;
-  font-size: 22px;
-  color: white;
-  transition: 0.3s;
-}
-
-.social-icons a:hover {
-  color: #22d3ee;
-}
-
-/* FORM */
-.contact-form {
-  margin-top: 40px;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 15px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-}
-
-.contact-form button {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  background: #3b82f6;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.contact-form button:hover {
-  background: #2563eb;
 }
 
 footer {
