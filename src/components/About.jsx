@@ -1,34 +1,40 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 // ── Animated CGPA bar ─────────────────────────────────────────────────────────
-function CGPACard({ semester, score, max = 10, delay, best }) {
+function CGPACard({ semester, score, max = 10, delay, best, pending }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const pct = (score / max) * 100;
+  const pct = score ? (score / max) * 100 : 0;
 
   return (
     <motion.div
       ref={ref}
-      className={`cgpa-card2 ${best ? "cgpa-best" : ""}`}
+      className={`cgpa-card2 ${best ? "cgpa-best" : ""} ${pending ? "cgpa-pending" : ""}`}
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
-      {best && <span className="cgpa-best-badge">Best ↑</span>}
       <div className="cgpa-top">
         <span className="cgpa-sem">{semester}</span>
-        <span className="cgpa-score">{score}</span>
+        <div className="cgpa-right">
+          {best && <span className="cgpa-best-badge">Best ↑</span>}
+          {pending ? (
+            <span className="cgpa-pending-score">Results Awaited</span>
+          ) : (
+            <span className="cgpa-score">{score}</span>
+          )}
+        </div>
       </div>
       <div className="cgpa-track">
         <motion.div
-          className="cgpa-fill"
+          className={`cgpa-fill ${pending ? "cgpa-fill-pending" : ""}`}
           initial={{ width: 0 }}
-          animate={inView ? { width: `${pct}%` } : {}}
+          animate={inView ? { width: pending ? "100%" : `${pct}%` } : {}}
           transition={{ delay: delay + 0.15, duration: 0.9, ease: "easeOut" }}
         />
       </div>
-      <span className="cgpa-out">/ {max}.00 SGPA</span>
+      {!pending && <span className="cgpa-out">/ {max}.00 SGPA</span>}
     </motion.div>
   );
 }
@@ -84,7 +90,7 @@ export default function About() {
           overflow: hidden;
         }
 
-        /* ── subtle bg grid (matches hero) ── */
+        /* ── subtle bg grid ── */
         .about-section::before {
           content: '';
           position: absolute;
@@ -196,58 +202,6 @@ export default function About() {
           color: #c8daf0;
         }
 
-        /* ── education card ── */
-        .edu-card {
-          background: rgba(255,255,255,0.025);
-          border: 1px solid rgba(255,255,255,0.06);
-          border-radius: 16px;
-          padding: 1.6rem 2rem;
-          display: flex;
-          align-items: center;
-          gap: 1.5rem;
-          transition: border-color 0.3s, background 0.3s;
-        }
-        .edu-card:hover {
-          border-color: rgba(0,245,196,0.2);
-          background: rgba(0,245,196,0.03);
-        }
-        .edu-icon-wrap {
-          width: 52px; height: 52px;
-          border-radius: 14px;
-          background: linear-gradient(135deg, rgba(0,245,196,0.15), rgba(59,130,246,0.15));
-          border: 1px solid rgba(0,245,196,0.2);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.4rem;
-          flex-shrink: 0;
-        }
-        .edu-body { display: flex; flex-direction: column; gap: 0.3rem; }
-        .edu-degree {
-          font-size: 1.05rem;
-          font-weight: 700;
-          color: #e8f0fe;
-        }
-        .edu-college {
-          font-size: 0.88rem;
-          color: #5a7090;
-        }
-        .edu-tag {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.3rem;
-          margin-top: 0.3rem;
-          padding: 0.2rem 0.65rem;
-          border-radius: 99px;
-          background: rgba(0,245,196,0.08);
-          border: 1px solid rgba(0,245,196,0.2);
-          font-size: 0.7rem;
-          color: #00f5c4;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          width: fit-content;
-        }
-
         /* ── CGPA ── */
         .cgpa-grid2 { display: flex; flex-direction: column; gap: 0.9rem; }
         .cgpa-card2 {
@@ -263,24 +217,32 @@ export default function About() {
           border-color: rgba(0,245,196,0.3) !important;
           background: rgba(0,245,196,0.04) !important;
         }
+        .cgpa-pending {
+          border-color: rgba(59,130,246,0.25) !important;
+          background: rgba(59,130,246,0.04) !important;
+        }
+        .cgpa-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 0.6rem;
+        }
+        .cgpa-right {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+        }
         .cgpa-best-badge {
-          position: absolute;
-          top: 0.75rem; right: 1rem;
           font-size: 0.66rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           color: #00f5c4;
           font-weight: 700;
           background: rgba(0,245,196,0.1);
-          padding: 0.15rem 0.5rem;
+          padding: 0.2rem 0.55rem;
           border-radius: 99px;
           border: 1px solid rgba(0,245,196,0.25);
-        }
-        .cgpa-top {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          margin-bottom: 0.6rem;
+          white-space: nowrap;
         }
         .cgpa-sem {
           font-size: 0.82rem;
@@ -297,6 +259,13 @@ export default function About() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+        .cgpa-pending-score {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #3b82f6;
+          letter-spacing: 0.05em;
+          font-style: italic;
+        }
         .cgpa-track {
           height: 5px;
           background: rgba(255,255,255,0.07);
@@ -308,6 +277,21 @@ export default function About() {
           height: 100%;
           background: linear-gradient(90deg, #00f5c4, #3b82f6);
           border-radius: 99px;
+        }
+        .cgpa-fill-pending {
+          background: repeating-linear-gradient(
+            90deg,
+            rgba(59,130,246,0.4) 0px,
+            rgba(59,130,246,0.4) 8px,
+            transparent 8px,
+            transparent 14px
+          );
+          animation: shimmer 1.8s infinite linear;
+          background-size: 28px 100%;
+        }
+        @keyframes shimmer {
+          0% { background-position: 0 0; }
+          100% { background-position: 28px 0; }
         }
         .cgpa-out {
           font-size: 0.7rem;
@@ -394,27 +378,6 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* ── Education ── */}
-          <div>
-            <SectionHeading delay={0}>Education</SectionHeading>
-            <motion.div
-              className="edu-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.55 }}
-            >
-              <div className="edu-icon-wrap">🎓</div>
-              <div className="edu-body">
-                <span className="edu-degree">B.E. Computer Engineering</span>
-                <span className="edu-college">
-                  Anjuman-I-Islam's Kalsekar Technical Campus (AIKTC)
-                </span>
-                <span className="edu-tag">📍 Mumbai · Sep 2024 – Present</span>
-              </div>
-            </motion.div>
-          </div>
-
           {/* ── Academic Performance ── */}
           <div>
             <SectionHeading delay={0}>Academic Performance</SectionHeading>
@@ -422,6 +385,7 @@ export default function About() {
               <CGPACard semester="Semester 1" score={7.07} delay={0.05} />
               <CGPACard semester="Semester 2" score={7.80} delay={0.15} />
               <CGPACard semester="Semester 3" score={9.41} delay={0.25} best />
+              <CGPACard semester="Semester 4" delay={0.35} pending />
             </div>
           </div>
 
