@@ -17,13 +17,15 @@ function CGPACard({ semester, score, max = 10, delay, best, awaited }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      {best && <span className="cgpa-badge">Best ↑</span>}
-      {awaited && <span className="cgpa-badge cgpa-badge--pending">Results Awaited</span>}
       <div className="cgpa-header">
         <span className="cgpa-sem">{semester}</span>
-        <span className={`cgpa-score ${awaited ? "cgpa-score--dim" : ""}`}>
-          {awaited ? "—" : score}
-        </span>
+        <div className="cgpa-right">
+          {best && <span className="cgpa-badge">Best ↑</span>}
+          {awaited && <span className="cgpa-badge cgpa-badge--pending">Results Awaited</span>}
+          <span className={`cgpa-score ${awaited ? "cgpa-score--dim" : ""}`}>
+            {awaited ? "—" : score}
+          </span>
+        </div>
       </div>
       <div className="cgpa-track">
         <motion.div
@@ -285,7 +287,7 @@ export default function About() {
         /* CGPA */
         .cgpa-grid { display: flex; flex-direction: column; gap: 0.75rem; }
         .cgpa-card {
-          padding: 1rem 1.4rem; border-radius: 14px; position: relative;
+          padding: 1rem 1.4rem; border-radius: 14px;
           background: rgba(255,255,255,0.025);
           border: 1px solid rgba(255,255,255,0.07);
           transition: border-color 0.3s;
@@ -297,17 +299,21 @@ export default function About() {
         }
         .cgpa-awaited { border-style: dashed !important; }
         .cgpa-badge {
-          position: absolute; top: 0.7rem; right: 1rem;
           font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
           text-transform: uppercase; color: #00f5c4;
           background: rgba(0,245,196,0.1); padding: 0.12rem 0.45rem;
           border-radius: 99px; border: 1px solid rgba(0,245,196,0.25);
+          white-space: nowrap;
         }
         .cgpa-badge--pending { color: #8ba3c7 !important; background: rgba(139,163,199,0.08) !important; border-color: rgba(139,163,199,0.2) !important; }
-        .cgpa-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.55rem; }
+        .cgpa-header {
+          display: flex; justify-content: space-between;
+          align-items: center; margin-bottom: 0.55rem; gap: 1rem;
+        }
         .cgpa-sem { font-size: 0.72rem; color: #3a5070; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+        .cgpa-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; }
         .cgpa-score {
-          font-size: 1.5rem; font-weight: 800;
+          font-size: 1.5rem; font-weight: 800; line-height: 1;
           background: linear-gradient(135deg, #00f5c4, #3b82f6);
           -webkit-background-clip: text; -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -436,6 +442,9 @@ export default function About() {
                 status="Currently Enrolled"
                 delay={0.05}
               />
+            </div>
+          </div>
+
           {/* Academic Performance */}
           <div>
             <SH>Academic Performance</SH>
