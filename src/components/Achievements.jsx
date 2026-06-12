@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
+// ── Shared certificates link ──────────────────────────────────────────────────
+const CERT_LINK = "https://drive.google.com/drive/folders/1pfXK-J7ovh4TbB0rNOL4x5VyymPniwS_";
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 const hackathons = [
   {
@@ -77,7 +80,7 @@ const hackathons = [
     badge: "ORGANIZER",
     color: "#f43f5e",
     icon: "🏗️",
-    year: "2025",
+    year: "2026",
     duration: "15 hrs · Solo Online · AIKTC",
     desc: "Organized ByteBattle — an official 15-hour solo online hackathon by the Department of Computer Engineering, AIKTC. Managed all logistics end-to-end.",
     points: [
@@ -98,7 +101,6 @@ const certificates = [
     color: "#00f5c4",
     year: "2024",
     desc: "Comprehensive training on designing, training & deploying generative AI models.",
-    link: "https://drive.google.com/drive/folders/1pfXK-J7ovh4TbB0rNOL4x5VyymPniwS_",
   },
   {
     title: "Technoscope Project-Based Learning Program",
@@ -107,7 +109,6 @@ const certificates = [
     color: "#3b82f6",
     year: "2024",
     desc: "Interdisciplinary engineering program focused on real-world IoT & AI integrated solutions.",
-    link: "https://drive.google.com/drive/folders/1pfXK-J7ovh4TbB0rNOL4x5VyymPniwS_",
   },
   {
     title: "TechSprint Hackathon – Top 10 Certificate",
@@ -116,34 +117,14 @@ const certificates = [
     color: "#a78bfa",
     year: "2025",
     desc: "Certificate of achievement for reaching Top 10 in the GDG TechSprint hackathon.",
-    link: "https://drive.google.com/drive/folders/1pfXK-J7ovh4TbB0rNOL4x5VyymPniwS_",
   },
   {
     title: "ByteBattle Organizer Certificate",
     issuer: "Dept. of Computer Engineering · AIKTC",
     icon: "🏗️",
     color: "#f43f5e",
-    year: "2025",
+    year: "2026",
     desc: "Recognition for successfully organizing and managing ByteBattle, an official department hackathon.",
-    link: "https://drive.google.com/drive/folders/1pfXK-J7ovh4TbB0rNOL4x5VyymPniwS_",
-  },
-  {
-    title: "GeeksforGeeks Campus Mantri",
-    issuer: "GeeksforGeeks",
-    icon: "🌿",
-    color: "#22c55e",
-    year: "2025",
-    desc: "Official recognition as GFG Campus Mantri — driving coding culture and peer mentorship at AIKTC.",
-    link: "https://drive.google.com/drive/folders/1pfXK-J7ovh4TbB0rNOL4x5VyymPniwS_",
-  },
-  {
-    title: "India Runs Campus Ambassador",
-    issuer: "India Runs",
-    icon: "🇮🇳",
-    color: "#fb923c",
-    year: "2025",
-    desc: "Campus Ambassador certificate for promoting health, fitness, and community wellness initiatives.",
-    link: "https://drive.google.com/drive/folders/1pfXK-J7ovh4TbB0rNOL4x5VyymPniwS_",
   },
 ];
 
@@ -164,7 +145,6 @@ function HackCard({ h, index }) {
     >
       <div className="hk-bar" style={{ background: `linear-gradient(90deg, ${h.color}, transparent)` }} />
       <div className="hk-body">
-        {/* header */}
         <div className="hk-header">
           <div className="hk-icon-wrap" style={{ background: `${h.color}18`, borderColor: `${h.color}30` }}>
             <span>{h.icon}</span>
@@ -181,7 +161,6 @@ function HackCard({ h, index }) {
         <p className="hk-achievement" style={{ color: h.color }}>{h.achievement}</p>
         <p className="hk-desc">{h.desc}</p>
 
-        {/* expandable points */}
         <motion.div
           className="hk-points-wrap"
           initial={false}
@@ -198,12 +177,14 @@ function HackCard({ h, index }) {
           </ul>
         </motion.div>
 
-        <button className="hk-toggle" style={{ color: h.color, borderColor: `${h.color}30` }}
-          onClick={() => setOpen(!open)}>
+        <button
+          className="hk-toggle"
+          style={{ color: h.color, borderColor: `${h.color}30` }}
+          onClick={() => setOpen(!open)}
+        >
           {open ? "Show less ↑" : "Show details ↓"}
         </button>
 
-        {/* skills */}
         <div className="hk-skills">
           {h.skills.map((s) => (
             <span key={s} className="hk-skill"
@@ -244,15 +225,6 @@ function CertCard({ c, index }) {
         <span className="cert-issuer">{c.issuer}</span>
         <p className="cert-desc">{c.desc}</p>
       </div>
-      <a href={c.link} target="_blank" rel="noopener noreferrer"
-        className="cert-view" style={{ color: c.color, borderColor: `${c.color}30` }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-        View
-      </a>
     </motion.div>
   );
 }
@@ -312,7 +284,7 @@ export default function Achievements() {
         .ach-inner {
           position: relative; z-index: 1;
           max-width: 1080px; margin: 0 auto;
-          display: flex; flex-direction: column; gap: 4.5rem;
+          display: flex; flex-direction: column; gap: 4rem;
         }
 
         /* heading */
@@ -354,7 +326,6 @@ export default function Achievements() {
         }
         .hk-bar { height: 3px; flex-shrink: 0; }
         .hk-body { padding: 1.4rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
-
         .hk-header { display: flex; align-items: center; gap: 0.75rem; }
         .hk-icon-wrap {
           width: 40px; height: 40px; border-radius: 11px; flex-shrink: 0;
@@ -368,26 +339,19 @@ export default function Achievements() {
           border-radius: 99px; border: 1px solid; width: fit-content;
         }
         .hk-year { font-size: 0.68rem; color: #3a5070; font-weight: 500; }
-
-        .hk-title {
-          font-size: 0.98rem; font-weight: 800; color: #e8f0fe;
-          line-height: 1.35; margin: 0;
-        }
+        .hk-title { font-size: 0.98rem; font-weight: 800; color: #e8f0fe; line-height: 1.35; margin: 0; }
         .hk-achievement { font-size: 0.82rem; font-weight: 700; margin: 0; }
         .hk-desc { font-size: 0.78rem; color: #5a7090; line-height: 1.6; margin: 0; }
-
         .hk-points { list-style: none; padding: 0; margin: 0.4rem 0 0; display: flex; flex-direction: column; gap: 0.45rem; }
         .hk-points li { font-size: 0.76rem; color: #8ba3c7; line-height: 1.5; display: flex; gap: 0.4rem; }
         .hk-check { flex-shrink: 0; font-size: 0.72rem; margin-top: 0.15rem; }
-
         .hk-toggle {
           background: none; border: 1px solid; border-radius: 8px;
           padding: 0.35rem 0.85rem; font-size: 0.72rem; font-weight: 700;
           cursor: pointer; letter-spacing: 0.04em; width: fit-content;
-          transition: background 0.2s; margin-top: 0.2rem;
+          transition: background 0.2s; margin-top: 0.2rem; font-family: inherit;
         }
         .hk-toggle:hover { background: rgba(255,255,255,0.05); }
-
         .hk-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; padding-top: 0.5rem; }
         .hk-skill {
           font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em;
@@ -396,18 +360,44 @@ export default function Achievements() {
         }
         .hk-skill:hover { transform: scale(1.07); }
 
-        /* certificates section */
-        .cert-block { display: flex; flex-direction: column; gap: 0.8rem; }
+        /* ── certificates section ── */
+        .cert-section-header {
+          display: flex; align-items: flex-end; justify-content: space-between;
+          flex-wrap: wrap; gap: 1rem;
+        }
+        .cert-view-all {
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em;
+          text-decoration: none; color: #00f5c4;
+          padding: 0.55rem 1.2rem; border-radius: 10px;
+          background: rgba(0,245,196,0.07);
+          border: 1px solid rgba(0,245,196,0.25);
+          transition: background 0.25s, box-shadow 0.25s, border-color 0.25s;
+          white-space: nowrap; flex-shrink: 0; align-self: flex-start; margin-top: 0.4rem;
+        }
+        .cert-view-all:hover {
+          background: rgba(0,245,196,0.14);
+          border-color: rgba(0,245,196,0.45);
+          box-shadow: 0 0 16px rgba(0,245,196,0.14);
+        }
+        .cert-view-all svg { flex-shrink: 0; }
+
+        .cert-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.9rem;
+        }
         .cert-card {
           display: flex; align-items: flex-start; gap: 1rem;
           background: rgba(255,255,255,0.025);
           border: 1px solid rgba(255,255,255,0.07);
           border-radius: 16px; padding: 1.2rem 1.4rem;
-          transition: border-color 0.3s, background 0.3s;
+          transition: border-color 0.3s, background 0.3s, transform 0.3s;
         }
         .cert-card:hover {
           border-color: color-mix(in srgb, var(--cert-color) 25%, transparent);
           background: rgba(255,255,255,0.032);
+          transform: translateY(-2px);
         }
         .cert-left { flex-shrink: 0; }
         .cert-icon-wrap {
@@ -415,29 +405,23 @@ export default function Achievements() {
           border: 1px solid; display: flex; align-items: center;
           justify-content: center; font-size: 1.2rem;
         }
-        .cert-body { flex: 1; display: flex; flex-direction: column; gap: 0.2rem; }
-        .cert-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-        .cert-title { font-size: 0.92rem; font-weight: 700; color: #d0e0f0; line-height: 1.4; }
+        .cert-body { flex: 1; display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+        .cert-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.8rem; }
+        .cert-title { font-size: 0.88rem; font-weight: 700; color: #d0e0f0; line-height: 1.4; }
         .cert-year { font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
-        .cert-issuer { font-size: 0.73rem; color: #3a5070; font-weight: 600; }
-        .cert-desc { font-size: 0.76rem; color: #5a7090; line-height: 1.55; margin: 0.25rem 0 0; }
-        .cert-view {
-          display: inline-flex; align-items: center; gap: 0.35rem; flex-shrink: 0;
-          font-size: 0.72rem; font-weight: 700; text-decoration: none;
-          padding: 0.4rem 0.9rem; border-radius: 8px; border: 1px solid;
-          transition: background 0.2s; white-space: nowrap; align-self: center;
-        }
-        .cert-view:hover { background: rgba(255,255,255,0.06); }
+        .cert-issuer { font-size: 0.72rem; color: #3a5070; font-weight: 600; }
+        .cert-desc { font-size: 0.75rem; color: #5a7090; line-height: 1.55; margin: 0.25rem 0 0; }
 
         /* responsive */
         @media (max-width: 900px) {
           .hk-grid { grid-template-columns: repeat(2, 1fr); }
+          .cert-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 580px) {
           .hk-grid { grid-template-columns: 1fr; }
           .hk-card:hover { transform: none; }
-          .cert-card { flex-wrap: wrap; }
-          .cert-view { width: 100%; justify-content: center; }
+          .cert-section-header { flex-direction: column; align-items: flex-start; }
+          .cert-view-all { width: 100%; justify-content: center; }
         }
       `}</style>
 
@@ -460,14 +444,33 @@ export default function Achievements() {
           </div>
 
           {/* ── Certificates ── */}
-          <SH
-            eyebrow="// verified skills"
-            title="Certificates &"
-            accent="Recognition"
-            sub="Formal certifications and official recognition across AI, engineering, and community leadership."
-          />
-          <div className="cert-block">
-            {certificates.map((c, i) => <CertCard key={c.title} c={c} index={i} />)}
+          <div>
+            <div className="cert-section-header">
+              <SH
+                eyebrow="// verified skills"
+                title="Certificates &"
+                accent="Recognition"
+                sub="Formal certifications and official recognition across AI, engineering, and community leadership."
+              />
+              <a
+                href={CERT_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cert-view-all"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                View All Certificates
+              </a>
+            </div>
+            <div style={{ marginTop: "1.8rem" }}>
+              <div className="cert-grid">
+                {certificates.map((c, i) => <CertCard key={c.title} c={c} index={i} />)}
+              </div>
+            </div>
           </div>
 
         </div>
