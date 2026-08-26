@@ -460,15 +460,47 @@ export default function About() {
             <SectionHeading delay={0}>Achievements & Roles</SectionHeading>
             <AchievementCard
               icon="⚡"
-              title="Organizer — ByteBattle Hackathon"
-              subtitle="Organized ByteBattle, a 15-hour solo online hackathon hosted by the Department of Computer Engineering, AIKTC in collaboration with GeeksforGeeks as Campus Mantri. Managed end-to-end event operations, participant coordination, and problem-setting."
+              title="Organizer — ByteBattle Hackathon 2026"
+              subtitle="Organized ByteBattle, an official 15-hour solo online hackathon by the Department of Computer Engineering, AIKTC. Managed end-to-end event operations, problem-setting, participant coordination, judges, and sponsors."
               tags={[
                 { label: "AIKTC · Dept. of CO" },
+                { label: "15 Hours Solo" },
+                { label: "2026" },
+              ]}
+              delay={0.05}
+            />
+            <AchievementCard
+              icon="🦁"
+              title="GMT Coordinator — Leo Club of Kalsekar Technical Campus"
+              subtitle="Serving as GMT Coordinator at the Leo Club of AIKTC, leading community service initiatives, organizing events, and coordinating club activities to drive social impact on campus."
+              tags={[
+                { label: "Leo Club · AIKTC" },
+                { label: "GMT Coordinator", blue: true },
+                { label: "Community Service" },
+              ]}
+              delay={0.12}
+            />
+            <AchievementCard
+              icon="🌿"
+              title="GeeksforGeeks Campus Mantri"
+              subtitle="Official GFG Campus Mantri at AIKTC — driving coding culture, organizing workshops and coding contests, and mentoring peers to build a stronger developer community on campus."
+              tags={[
                 { label: "GeeksforGeeks", blue: true },
                 { label: "Campus Mantri", blue: true },
-                { label: "15 Hours Solo" },
+                { label: "AIKTC" },
               ]}
-              delay={0.1}
+              delay={0.19}
+            />
+            <AchievementCard
+              icon="🇮🇳"
+              title="India Runs — Campus Ambassador"
+              subtitle="Campus Ambassador for India Runs, promoting the initiative across AIKTC and engaging the student community in health, fitness, and community wellness activities."
+              tags={[
+                { label: "India Runs" },
+                { label: "Campus Ambassador", blue: true },
+                { label: "2025" },
+              ]}
+              delay={0.26}
             />
           </div>
 
