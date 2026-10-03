@@ -3,8 +3,6 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const projects = [
   {
-
-    
     id: 1,
     emoji: "🩸",
     tag: "AI · Healthcare",
@@ -30,8 +28,7 @@ const projects = [
     github: "https://github.com/skyusufrafi/BloodAI",
     live: "https://bloodai-analyzer.vercel.app",
   },
-];
-
+  {
     id: 2,
     emoji: "📋",
     tag: "Productivity",
@@ -147,7 +144,8 @@ const projects = [
     github: "https://github.com/skyusufrafi/SkillSync-AI",
     live: "https://skillsync-ai-fzhu.onrender.com/",
   },
-  {
+
+];
 
 // ── Tech colour map ───────────────────────────────────────────────────────────
 const techColor = (t) => {
@@ -606,7 +604,7 @@ export default function Projects() {
           >
             {[
               { num: "6+", label: "Projects Built" },
-              { num: "4", label: "AI-Powered" },
+              { num: "3", label: "AI-Powered" },
               { num: "100%", label: "Open Source" },
             ].map((s, i) => (
               <div className="proj-stat-card" key={i}>
