@@ -3,7 +3,36 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const projects = [
   {
+
+    
     id: 1,
+    emoji: "🩸",
+    tag: "AI · Healthcare",
+    tagBlue: true,
+    featured: true,
+    title: "BloodAI",
+    subtitle: "AI Blood Report Analyzer",
+    desc: "AI-powered blood report analysis using OCR, reference-range evaluation, and Google Gemini. Extracts parameters from uploaded PDF/image reports and generates easy-to-understand insights.",
+    disclaimer: "Educational/informational prototype — not intended for medical diagnosis or to replace professional medical advice.",
+    features: [
+      "PDF and image blood report upload",
+      "OCR-based text extraction (Tesseract)",
+      "Automatic patient detail extraction",
+      "Blood parameter detection",
+      "Low / Normal / High classification",
+      "Reference range comparison",
+      "AI-generated parameter explanations",
+      "Overall AI-generated report summary",
+      "Interactive analysis dashboard",
+      "Full-stack deployed application",
+    ],
+    tech: ["React", "Vite", "Python", "FastAPI", "Gemini", "Tesseract OCR", "PyMuPDF"],
+    github: "https://github.com/skyusufrafi/BloodAI",
+    live: "https://bloodai-analyzer.vercel.app",
+  },
+];
+
+    id: 2,
     emoji: "📋",
     tag: "Productivity",
     tagBlue: false,
@@ -26,7 +55,7 @@ const projects = [
     live: "https://clever-qr-attnd.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     emoji: "🌱",
     tag: "AI · Sustainability",
     tagBlue: true,
@@ -49,7 +78,7 @@ const projects = [
     live: "https://smartcanteen-inky.vercel.app/",
   },
   {
-    id: 3,
+    id: 4,
     emoji: "🚨",
     tag: "AI · Emergency",
     tagBlue: true,
@@ -72,7 +101,7 @@ const projects = [
     live: "https://sentinel-ai-ebon.vercel.app/",
   },
   {
-    id: 4,
+    id: 5,
     emoji: "🤝",
     tag: "Community · Featured",
     tagBlue: false,
@@ -96,7 +125,7 @@ const projects = [
     live: "https://unitylink-peach.vercel.app/",
   },
   {
-    id: 5,
+    id: 6,
     emoji: "🧠",
     tag: "AI · Career",
     tagBlue: true,
@@ -118,17 +147,22 @@ const projects = [
     github: "https://github.com/skyusufrafi/SkillSync-AI",
     live: "https://skillsync-ai-fzhu.onrender.com/",
   },
-];
+  {
 
 // ── Tech colour map ───────────────────────────────────────────────────────────
 const techColor = (t) => {
   const map = {
     React: { bg: "rgba(97,218,251,0.1)", border: "rgba(97,218,251,0.3)", color: "#61dafb" },
+    Vite: { bg: "rgba(189,102,255,0.1)", border: "rgba(189,102,255,0.3)", color: "#bd66ff" },
     "Node.js": { bg: "rgba(104,160,99,0.1)", border: "rgba(104,160,99,0.3)", color: "#68a063" },
     MongoDB: { bg: "rgba(77,179,61,0.1)", border: "rgba(77,179,61,0.3)", color: "#4db33d" },
     AI: { bg: "rgba(168,85,247,0.1)", border: "rgba(168,85,247,0.3)", color: "#a855f7" },
     "AI APIs": { bg: "rgba(168,85,247,0.1)", border: "rgba(168,85,247,0.3)", color: "#a855f7" },
+    Gemini: { bg: "rgba(66,133,244,0.1)", border: "rgba(66,133,244,0.3)", color: "#4285f4" },
     Python: { bg: "rgba(255,212,59,0.1)", border: "rgba(255,212,59,0.3)", color: "#ffd43b" },
+    FastAPI: { bg: "rgba(5,150,105,0.1)", border: "rgba(5,150,105,0.3)", color: "#059669" },
+    "Tesseract OCR": { bg: "rgba(239,68,68,0.1)", border: "rgba(239,68,68,0.3)", color: "#ef4444" },
+    PyMuPDF: { bg: "rgba(251,146,60,0.1)", border: "rgba(251,146,60,0.3)", color: "#fb923c" },
     "HTML/CSS": { bg: "rgba(240,101,41,0.1)", border: "rgba(240,101,41,0.3)", color: "#f06529" },
     "Google Sheets": { bg: "rgba(14,165,95,0.1)", border: "rgba(14,165,95,0.3)", color: "#0ea55f" },
   };
@@ -167,6 +201,7 @@ function ProjectCard({ project, index }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: (index % 2) * 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
+      {project.featured && <span className="proj-featured-ribbon">Featured</span>}
 
       {/* header */}
       <div className="proj-card-header">
@@ -184,6 +219,11 @@ function ProjectCard({ project, index }) {
 
       {/* desc */}
       <p className="proj-desc">{project.desc}</p>
+
+      {/* disclaimer (BloodAI only) */}
+      {project.disclaimer && (
+        <p className="proj-disclaimer">⚕️ {project.disclaimer}</p>
+      )}
 
       {/* features toggle */}
       <div className="proj-features-wrap">
@@ -423,6 +463,15 @@ export default function Projects() {
           font-size: 0.84rem; line-height: 1.65; color: #5a7090; margin: 0;
         }
 
+        /* ── disclaimer ── */
+        .proj-disclaimer {
+          font-size: 0.72rem; line-height: 1.5; margin: 0;
+          color: #4a6080;
+          background: rgba(239,68,68,0.05);
+          border: 1px solid rgba(239,68,68,0.12);
+          border-radius: 8px; padding: 0.45rem 0.75rem;
+        }
+
         /* ── features toggle ── */
         .proj-features-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
         .proj-toggle-btn {
@@ -556,8 +605,8 @@ export default function Projects() {
             transition={{ delay: 0.1, duration: 0.6 }}
           >
             {[
-              { num: "5+", label: "Projects Built" },
-              { num: "3", label: "AI-Powered" },
+              { num: "6+", label: "Projects Built" },
+              { num: "4", label: "AI-Powered" },
               { num: "100%", label: "Open Source" },
             ].map((s, i) => (
               <div className="proj-stat-card" key={i}>
